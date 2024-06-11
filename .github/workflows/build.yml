@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
 
 jobs:
   build:
@@ -26,6 +25,9 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/gradle.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+
+      - name: Set execute permission on gradlew
+        run: chmod +x ./gradlew
 
       - name: Build project
         run: ./gradlew assembleRelease
