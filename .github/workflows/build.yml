@@ -1,4 +1,4 @@
-name: Build GrindrPlus
+name: Build GrindrPlus Debug
 
 on:
   push:
@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -30,10 +31,10 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build project
-        run: ./gradlew assembleRelease
+        run: ./gradlew assembleDebug
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: GrindrPlus-build
-          path: app/build/outputs/apk/release/
+          name: GrindrPlus-debug-build
+          path: app/build/outputs/apk/debug/
